@@ -3,15 +3,23 @@ import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './ColumnForm.module.scss';
 
-const ColumnForm = (props) => {
+const ColumnForm = ({ action }) => {
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.action(title, icon);
+    action(title, icon);
     setTitle('');
     setIcon('');
+  };
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleIcon = (e) => {
+    setIcon(e.target.value);
   };
 
   return (
@@ -20,14 +28,14 @@ const ColumnForm = (props) => {
       <TextInput
         value={title}
         placeholder='Insert Title...'
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleTitle}
       />
       <span>Icon:</span>
       <TextInput
         type='text'
         value={icon}
         placeholder='Insert Icon...'
-        onChange={(e) => setIcon(e.target.value)}
+        onChange={handleIcon}
       />
       <Button>Add column</Button>
     </form>

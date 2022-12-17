@@ -3,13 +3,17 @@ import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './CardForm.module.scss';
 
-const CardForm = (props) => {
+const CardForm = ({ columnId, action }) => {
   const [title, setTitle] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.action({ title: title }, props.columnId);
+    action({ title: title }, columnId);
     setTitle('');
+  };
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
   };
 
   return (
@@ -17,7 +21,7 @@ const CardForm = (props) => {
       <TextInput
         value={title}
         placeholder='Insert Card...'
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleTitle}
       />
       <Button>Add card</Button>
     </form>
