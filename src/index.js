@@ -1,7 +1,7 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import './styles/normalize.scss';
 import './styles/global.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+createRoot(document.querySelector('#root')).render(<App />);
