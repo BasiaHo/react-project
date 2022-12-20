@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
 import styles from './Column.module.scss';
 
-export const Column = ({ icon, title, id, addCard }) => {
+export const Column = ({ icon, title, id }) => {
   const cards = useSelector((state) =>
     state.cards.filter((card) => card.columnId === id)
   );
@@ -13,13 +13,13 @@ export const Column = ({ icon, title, id, addCard }) => {
       <h2 className={styles.title}>
         <span className={`${styles.icon} fa fa-${icon}`} />
         {title}
-      </h2>git
+      </h2>
       <ul className={styles.cards}>
         {cards.map((card) => (
-          <Card key={card.id} title={card.title} />
+          <Card key={card.id} {...card} />
         ))}
       </ul>
-      <CardForm columnId={id} action={addCard} />
+      <CardForm columnId={id} />
     </article>
   );
 };

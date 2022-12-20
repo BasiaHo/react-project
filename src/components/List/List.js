@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Column from '../Column/Column';
 import ColumnForm from '../ColumnForm/ColumnForm';
@@ -5,8 +6,6 @@ import styles from './List.module.scss';
 
 const List = () => {
   const columns = useSelector((state) => state.columns);
-  const addCard = useSelector((state) => state.addCard);
-  const addColumn = useSelector((state) => state.addColumn);
 
   return (
     <div className={styles.list}>
@@ -19,18 +18,11 @@ const List = () => {
         Interesting things I want to check out
       </p>
       <section className={styles.columns}>
-        {columns.map((column) => (
-          <Column
-            key={column.id}
-            id={column.id}
-            title={column.title}
-            icon={column.icon}
-            cards={column.cards}
-            addCard={addCard}
-          />
-        ))}
+        {columns.map((column) => {
+          return <Column key={column.id} {...column} />;
+        })}
       </section>
-      <ColumnForm action={addColumn} />
+      <ColumnForm />
     </div>
   );
 };
